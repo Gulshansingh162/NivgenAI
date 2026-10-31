@@ -1,0 +1,52 @@
+.worker-activity {
+  display: grid;
+  gap: 20px;
+  min-width: 0;
+}
+
+.worker-assignments {
+  width: 100%;
+}
+
+.map-directions {
+  display: inline-flex;
+  align-items: center;
+  margin: 0 0 10px;
+  color: #255279;
+}
+
+.worker-update-form {
+  display: grid;
+  grid-template-columns: minmax(125px, .7fr) minmax(0, 1.3fr) auto;
+  align-items: start;
+  gap: 8px;
+  margin: 14px 0 12px;
+}
+
+.worker-update-form select,
+.worker-update-form textarea {
+  width: 100%;
+  min-width: 0;
+  padding: 9px;
+  border: 1px solid #d8e2ee;
+  border-radius: 7px;
+  color: #17385d;
+  background: white;
+  font-size: 11px;
+}
+
+.worker-update-form textarea {
+  resize: vertical;
+  line-height: 1.5;
+}
+
+.worker-update-form .button {
+  min-height: 36px;
+}
+
+@media (max-width: 560px) {
+  .worker-update-form {
+    grid-template-columns: 1fr;
+  }
+}
+

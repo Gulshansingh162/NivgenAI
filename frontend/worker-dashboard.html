@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#102b2a">
+  <title>Worker Portal | CityShield</title>
+  <link rel="stylesheet" href="citizen-dashboard.css">
+  <link rel="stylesheet" href="worker-dashboard.css">
+  <script src="worker-dashboard.js" defer></script>
+</head>
+<body>
+  <header class="citizen-header">
+    <a class="citizen-brand" href="index.html">⬟ CityShield <span>AI</span></a>
+    <div class="citizen-account">
+      <span id="welcomeName">Worker Portal</span>
+      <button id="logoutButton" type="button" class="button button-quiet">Sign out</button>
+    </div>
+  </header>
+
+  <main class="citizen-main worker-main">
+    <section class="welcome-panel">
+      <div>
+        <p class="eyebrow">CITY RESPONSE TEAM</p>
+        <h1>Manage incidents assigned to your response team.</h1>
+        <p>Review incident details, get directions to the location, and keep the response team updated.</p>
+      </div>
+      <div class="welcome-symbol" aria-hidden="true">♟</div>
+    </section>
+
+    <div id="notificationBanner" class="notification-banner" role="status" aria-live="polite" hidden></div>
+
+    <section class="panel reports-panel worker-assignments" aria-labelledby="assignedHeading">
+      <div class="panel-heading reports-heading">
+        <div>
+          <p class="eyebrow">RESPONSE TASKS</p>
+          <h2 id="assignedHeading">Assigned to me</h2>
+        </div>
+        <button type="button" id="refreshReports" class="button button-quiet">↻ Refresh</button>
+      </div>
+      <p id="assignedMessage" class="reports-message" role="status" aria-live="polite"></p>
+      <div id="assignedList" class="report-list">
+        <p class="empty-state">Loading assigned incidents…</p>
+      </div>
+    </div>
+  </main>
+
+  <footer class="citizen-footer">
+    <span>CityShield AI · Safer cities, stronger communities.</span>
+    <a href="index.html">CityShield home</a>
+  </footer>
+</body>
+</html>

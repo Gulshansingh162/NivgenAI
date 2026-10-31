@@ -1,0 +1,147 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CityShield AI | Smart City Response</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <header class="header">
+    <a class="brand" href="#home">⬟ CityShield <b>AI</b></a>
+    <button class="menu" id="menu" type="button" aria-label="Toggle navigation" aria-controls="nav" aria-expanded="false">☰</button>
+    <nav id="nav" aria-label="Main navigation">
+      <a class="active" href="#home">Home</a>
+      <a href="#features">Features</a>
+      <a href="#process">How It Works</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="shade"></div>
+      <div class="hero-copy">
+        <span class="eyebrow">CITY SERVICES · INCIDENT RESPONSE</span>
+        <h1>A safer city starts<br>with being heard.</h1>
+        <h2>Report local issues. Follow the response.</h2>
+        <p>One place for residents and response teams to share what is happening<br>and coordinate the next steps.</p>
+        <a class="cta" href="#features">See how it works <b>→</b></a>
+      </div>
+
+      <aside class="login">
+        <p class="login-kicker">CITYSHIELD PORTAL</p>
+        <h3>Sign in to continue</h3>
+        <p>Select the portal that matches your role.</p>
+        <button data-role="Admin" class="role admin"><span>01</span>Administrator <b>→</b></button>
+        <button data-role="Citizen" class="role citizen"><span>02</span>Resident portal <b>→</b></button>
+        <button data-role="Worker" class="role worker"><span>03</span>Response team <b>→</b></button>
+        <small>Need an account? Contact your city administrator.</small>
+      </aside>
+    </section>
+
+    <section class="section features" id="features">
+      <div class="heading">
+        <label>ONE CONNECTED SERVICE</label>
+        <h2>From local concern to coordinated response</h2>
+        <p>Keep reports, response teams, and updates together in one practical place.</p>
+      </div>
+      <div class="cards">
+        <article><div class="ico blue">01</div><h3>Report an issue</h3><p>Share flooding, road damage, accidents, and waste concerns.</p></article>
+        <article><div class="ico purple">02</div><h3>Pinpoint the place</h3><p>Add an address or share coordinates to help teams find it.</p></article>
+        <article><div class="ico teal">03</div><h3>Send it to the right team</h3><p>Administrators assign incidents to available response workers.</p></article>
+        <article><div class="ico red">04</div><h3>See progress</h3><p>Follow status changes and updates from the response team.</p></article>
+        <article><div class="ico orange">05</div><h3>Close the loop</h3><p>Keep the report history together through resolution.</p></article>
+      </div>
+    </section>
+
+    <section class="section process" id="process">
+      <div>
+        <label>A CLEAR PROCESS</label>
+        <h2>Every report has a next step</h2>
+        <p>Residents and response teams can see what has happened and what comes next.</p>
+        <ol class="steps">
+          <li><i>1</i><b>Report</b><span>Describe the issue and where it happened.</span></li>
+          <li><i>2</i><b>Review</b><span>City administrators review incoming reports.</span></li>
+          <li><i>3</i><b>Assign</b><span>A response worker receives the incident.</span></li>
+          <li><i>4</i><b>Respond</b><span>The team records progress and status updates.</span></li>
+          <li><i>5</i><b>Resolve</b><span>Everyone can follow the final outcome.</span></li>
+        </ol>
+        <a class="learn" href="#about">About CityShield →</a>
+      </div>
+      <div class="dash">
+        <div class="dash-head">CityShield <small>ADMINISTRATION</small></div>
+        <div class="dash-grid">
+          <div class="side"><span>Overview</span><span class="side-active">Incidents</span><span>Response teams</span><span>Reports</span></div>
+          <div class="map">
+            <span>01</span><span>02</span><span>03</span>
+            <div>INCIDENT CS-027<br><small>Flooding · High priority</small></div>
+          </div>
+          <div class="recent">
+            <h4>Recent reports</h4>
+            <p>Flooded underpass <small>In progress · 10:42</small></p>
+            <p>Damaged road surface <small>Assigned · 09:18</small></p>
+            <p>Missed waste collection <small>Under review · Yesterday</small></p>
+          </div>
+        </div>
+        <footer>Reports, assignments and updates in one place.</footer>
+      </div>
+    </section>
+
+    <section class="section about" id="about">
+      <div>
+        <label>OUR PURPOSE</label>
+        <h2>Better communication between the people and teams who care for a city.</h2>
+        <p>CityShield gives residents a clear way to raise local issues and helps response teams keep the work visible from first report to resolution.</p>
+      </div>
+      <div class="mission">
+        <span>♟<small>Faster Response</small></span>
+        <span>⌁<small>Smarter Resource Use</small></span>
+        <span>♧<small>Safer Communities</small></span>
+        <span>▥<small>Sustainable Cities</small></span>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer" id="contact">
+    <div><a class="brand" href="#home">⬟ CityShield <b>AI</b></a><p>Clear reports. Coordinated response.</p></div>
+    <small>© <span id="year"></span> CityShield AI · City services and incident response.</small>
+  </footer>
+
+  <dialog id="dialog" aria-labelledby="dialogTitle">
+  <button
+    type="button"
+    class="close"
+    id="closeDialog"
+    aria-label="Close login window"
+  >×</button>
+
+  <div class="auth-brand">CITYSHIELD <span>AI</span></div>
+
+  <h2 id="dialogTitle">Login</h2>
+  <p id="dialogDescription" class="auth-description">
+    Sign in to your CityShield AI account.
+  </p>
+
+  <div id="authTabs" class="auth-tabs" hidden>
+    <button type="button" id="showRegister" class="auth-tab">Register</button>
+    <button type="button" id="showLogin" class="auth-tab active">Login</button>
+  </div>
+
+  <form id="authForm">
+    <div id="authFields"></div>
+
+    <p id="authMessage" class="auth-message" role="status" aria-live="polite"></p>
+
+    <button type="submit" id="authSubmit" class="cta auth-submit">
+      Login
+    </button>
+  </form>
+
+  <p id="authFootnote" class="auth-footnote"></p>
+</dialog>
+</body>
+</html>

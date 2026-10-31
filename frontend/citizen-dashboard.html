@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#102b2a">
+  <title>Citizen Portal | CityShield</title>
+  <link rel="stylesheet" href="citizen-dashboard.css">
+  <script src="citizen-dashboard.js" defer></script>
+</head>
+<body>
+  <header class="citizen-header">
+    <a class="citizen-brand" href="index.html">⬟ CityShield <span>AI</span></a>
+    <div class="citizen-account">
+      <span id="welcomeName">Citizen Portal</span>
+      <button id="logoutButton" type="button" class="button button-quiet">Sign out</button>
+    </div>
+  </header>
+
+  <main class="citizen-main">
+    <section class="welcome-panel">
+      <div>
+        <p class="eyebrow">YOUR COMMUNITY, YOUR VOICE</p>
+        <h1>Report an issue. Follow the response.</h1>
+        <p>Share flooding, accidents, waste, or road damage with your local response team.</p>
+      </div>
+      <div class="welcome-symbol" aria-hidden="true">⌖</div>
+    </section>
+
+    <div id="notificationBanner" class="notification-banner" role="status" aria-live="polite" hidden></div>
+
+    <section class="emergency-contact" aria-labelledby="emergencyContactHeading">
+      <div class="emergency-contact-copy">
+        <p class="eyebrow">IMMEDIATE DANGER?</p>
+        <h2 id="emergencyContactHeading">Contact emergency services</h2>
+        <p>Call 1070 for your State Disaster Control Room. Do not enter floodwater to attempt a rescue yourself.</p>
+      </div>
+      <a class="emergency-call-button" href="tel:1070" aria-label="Call the State Disaster Control Room at 1070">
+        Call 1070
+      </a>
+    </section>
+
+    <section class="panel emergency-alerts-panel" aria-labelledby="emergencyAlertsHeading">
+      <div class="panel-heading">
+        <div>
+          <p class="eyebrow">CITY SAFETY</p>
+          <h2 id="emergencyAlertsHeading">Emergency Alerts</h2>
+        </div>
+      </div>
+      <p id="emergencyAlertsMessage" class="reports-message" role="status" aria-live="polite">Checking for active alerts...</p>
+      <div id="emergencyAlertList" class="emergency-alert-list">
+        <p class="empty-state">Loading emergency alerts...</p>
+      </div>
+    </section>
+
+    <section class="panel facility-finder-panel" aria-labelledby="facilityFinderHeading">
+      <div class="panel-heading">
+        <div>
+          <p class="eyebrow">EMERGENCY RESOURCES</p>
+          <h2 id="facilityFinderHeading">Emergency Shelter &amp; Hospital Finder</h2>
+        </div>
+      </div>
+      <p class="facility-finder-help">
+        Find mapped hospitals and designated emergency shelters near you. Your device location is sent to OpenStreetMap through CityShield only when you choose to search.
+      </p>
+      <button type="button" id="facilitySearchButton" class="button button-primary">
+        Find facilities near me
+      </button>
+      <p id="facilitySearchMessage" class="facility-search-message" role="status" aria-live="polite">
+        Search within 5 km using your device location.
+      </p>
+      <div id="facilityRecommendation" class="facility-recommendation" hidden></div>
+      <div id="facilityResults" class="facility-results"></div>
+      <p class="facility-attribution">
+        Facility data © <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">OpenStreetMap contributors</a>.
+        Distances are approximate. Listings may be incomplete; operating status and capacity are not live-confirmed. Follow local emergency guidance.
+      </p>
+    </section>
+
+    <div class="citizen-grid">
+      <section class="panel report-panel" aria-labelledby="reportHeading">
+        <div class="panel-heading">
+          <div>
+            <p class="eyebrow">NEW REPORT</p>
+            <h2 id="reportHeading">Tell us what happened</h2>
+          </div>
+        </div>
+        <section class="voice-report" aria-labelledby="voiceReportHeading">
+          <div>
+            <p class="eyebrow">VOICE REPORTING</p>
+            <h3 id="voiceReportHeading">Speak your report</h3>
+            <p class="voice-help">Dictate in English, Hindi, or Punjabi. We’ll transcribe your words and suggest a report type. Review the details before sending.</p>
+          </div>
+          <div class="voice-controls">
+            <label class="field voice-language">
+              <span>Spoken language</span>
+              <select id="voiceLanguage">
+                <option value="en-IN">English</option>
+                <option value="hi-IN">Hindi</option>
+                <option value="pa-IN">Punjabi</option>
+              </select>
+            </label>
+            <div class="voice-buttons">
+              <button type="button" id="startVoiceReport" class="button button-primary">Start speaking</button>
+              <button type="button" id="stopVoiceReport" class="button button-secondary" disabled>Stop</button>
+            </div>
+          </div>
+          <p id="voiceReportMessage" class="voice-message" role="status" aria-live="polite">Your microphone is only used after you start recording.</p>
+        </section>
+        <form id="reportForm">
+          <label class="field">
+            <span>Report title</span>
+            <input name="title" type="text" minlength="3" maxlength="160" required placeholder="e.g. Flooded road near the market">
+          </label>
+
+          <div class="field-row">
+            <label class="field">
+              <span>Issue type</span>
+              <select name="category" required>
+                <option value="">Select a category</option>
+                <option>Flooding</option>
+                <option>Accident</option>
+                <option>Waste</option>
+                <option>Road Damage</option>
+              </select>
+            </label>
+            <label class="field">
+              <span>Urgency</span>
+              <select name="priority" required>
+                <option value="low">Low</option>
+                <option value="medium" selected>Medium</option>
+                <option value="high">High</option>
+                <option value="critical">Critical — immediate danger</option>
+              </select>
+            </label>
+          </div>
+
+          <label class="field">
+            <span>What happened?</span>
+            <textarea name="description" minlength="10" maxlength="5000" rows="5" required placeholder="Describe the issue, who or what is affected, and any immediate risks."></textarea>
+          </label>
+
+          <label class="field">
+            <span>Location or address</span>
+            <input name="location" type="text" maxlength="255" required placeholder="Street, landmark, neighborhood, or address">
+          </label>
+          <div class="location-row">
+            <button type="button" id="locationButton" class="button button-secondary">⌖ Use my current coordinates</button>
+            <span id="locationMessage" class="field-hint">You can enter an address without sharing device location.</span>
+          </div>
+          <input name="latitude" type="hidden">
+          <input name="longitude" type="hidden">
+
+          <label class="field">
+            <span>Photo <small>(optional, JPG/PNG/WebP, up to 5 MB)</small></span>
+            <input id="imageInput" name="image" type="file" accept="image/jpeg,image/png,image/webp">
+          </label>
+          <img id="imagePreview" class="image-preview" alt="Selected report image preview" hidden>
+
+          <p id="formMessage" class="form-message" role="status" aria-live="polite"></p>
+          <button type="submit" id="submitReport" class="button button-primary">Send report</button>
+        </form>
+      </section>
+
+      <section class="panel reports-panel" aria-labelledby="reportsHeading">
+        <div class="panel-heading reports-heading">
+          <div>
+            <p class="eyebrow">MY REPORTS</p>
+            <h2 id="reportsHeading">Report activity</h2>
+          </div>
+          <button type="button" id="refreshReports" class="button button-quiet">↻ Refresh</button>
+        </div>
+        <p id="reportsMessage" class="reports-message" role="status" aria-live="polite"></p>
+        <div id="reportList" class="report-list">
+          <p class="empty-state">Loading your reports…</p>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="citizen-footer">
+    <span>CityShield AI · Safer cities, stronger communities.</span>
+    <a href="index.html">CityShield home</a>
+  </footer>
+</body>
+</html>
