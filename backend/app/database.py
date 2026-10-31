@@ -5,6 +5,24 @@ from sqlalchemy.orm import DeclarativeBase, sessionmaker
 from app.config import settings
 
 
+DATABASE_URL = (
+    f"mysql+pymysql://{settings.db_user}:"
+    f"{settings.db_password}@{settings.db_host}:"
+    f"{settings.db_port}/{settings.db_name}"
+)
+
+engine = create_engine(
+    DATABASE_URL,
+    pool_pre_ping=True
+)
+
+SessionLocal = sessionmaker(
+    autocommit=False,
+    autoflush=False,
+    bind=engine
+)
+
+
 connect_args = (
     {"check_same_thread": False}
     if settings.database_url.startswith("sqlite")
